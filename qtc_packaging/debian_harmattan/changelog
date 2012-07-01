@@ -1,0 +1,39 @@
+meeradio (0.8.0) unstable; urgency=low
+
+  * Completly revamped UI.
+  * New Favorites, Radio Service, Locals and Search Tabs.
+  * Integrated SHOUTcast directory and search support (at beta!).
+  * Various minor stability fixes.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 29 Sep 2011 16:55:47 +0300
+
+meeradio (0.4.4) unstable; urgency=low
+
+  * Support for ASX playlists format.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 04 Aug 2011 08:55:20 +0300
+
+meeradio (0.4.3) unstable; urgency=low
+
+  * Improved error handling.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 01 Aug 2011 11:10:20 +0300
+
+meeradio (0.4.2) unstable; urgency=low
+
+  * Added hints to station edit/add sheet.
+  * Fixed issue when importing a directory was possible.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 27 Jul 2011 09:13:17 +0300
+
+meeradio (0.4.1) unstable; urgency=low
+
+  * Support for MMS streams.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 25 Jul 2011 10:59:17 +0300
+
+meeradio (0.4.0) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Stanislav Ionascu <stanislav.ionascu@gmail.com>  Wed, 06 Jul 2011 11:03:28 +0300

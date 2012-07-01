@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/AddEditStationSheet.qml</file>
+        <file>js/DB.js</file>
+        <file>js/UI.js</file>
+        <file>qml/FileListItem.qml</file>
+        <file>qml/ViewHeader.qml</file>
+        <file>data/imgs/viewheader-background.png</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/FavoritesPage.qml</file>
+        <file>qml/ServicesPage.qml</file>
+        <file>qml/LocalsPage.qml</file>
+        <file>qml/SearchPage.qml</file>
+        <file>qml/FavoriteListItem.qml</file>
+        <file>qml/SHOUTcastGenresModel.qml</file>
+        <file>qml/FlickableListView.qml</file>
+        <file>qml/SHOUTcastTunesModel.qml</file>
+        <file>qml/SHOUTcastSearchModel.qml</file>
+        <file>qml/PlaybackButton.qml</file>
+        <file>qml/MediaListItem.qml</file>
+        <file>qml/AudioPlaylist.qml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,13 @@
+*.deb
+*.changes
+Makefile
+*.pro.user
+.moc
+.obj
+bin
+debian
+.DS_Store
+build-stamp
+configure-stamp
+*.pro.shared
+screenshots

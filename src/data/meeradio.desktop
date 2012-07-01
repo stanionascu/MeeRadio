@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Name=MeeRadio
+Exec=/usr/bin/invoker --single-instance --splash /opt/meeradio/share/images/splash.png --type=d /opt/meeradio/bin/meeradio
+Icon=/opt/meeradio/share/icons/meeradio.png
+X-Window-Icon=
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Type=application/x-executable
