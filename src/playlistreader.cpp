@@ -106,8 +106,10 @@ void PlaylistReaderPrivate::loadFromRemote(const QUrl &url)
         qDebug() << "MMS Stream detected...";
         emit q->loaded();
     } else {
-        queuedReply = networkAccessManager->get(QNetworkRequest(url));
-        ++pendingRequests;
+        //this fix allows listening direct streaming (not using playlist)
+        //ex. http://mp3.streampower.be/radio1-low.mp3
+        //first do head to check content type
+        queuedReply = networkAccessManager->head(QNetworkRequest(url));
     }
 }
 
@@ -162,12 +164,35 @@ void PlaylistReaderPrivate::_q_networkReplyReady(QNetworkReply *reply)
         return;
     }
 
+    QString contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString();
+    bool isASX = reply->url().path().endsWith(".asx", Qt::CaseInsensitive);
+    bool isM3U = reply->url().path().endsWith(".m3u", Qt::CaseInsensitive);
+    bool isPLS = reply->url().path().endsWith(".pls", Qt::CaseInsensitive);
+    qDebug() << "Content-Type:" << contentType;
+
+    if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+        qWarning() << "Processing head!";
+        //trying to figure is content type a play list
+        if (isFormat(contentType, PlaylistReader::ASX) || isASX ||
+            isFormat(contentType, PlaylistReader::PLS) || isPLS ||
+            isFormat(contentType, PlaylistReader::M3U) || isM3U) {
+            //this is playlist, do get
+            queuedReply = networkAccessManager->get(QNetworkRequest(reply->url()));
+            ++pendingRequests;
+            reply->deleteLater();
+            qDebug() << "Play List detected...";
+            return;
+        } else {
+            //it's not playlist, assume direct streaming
+            urls << reply->url().toString();
+            qDebug() << "Assuming Direct Stream detected...";
+            emit q->loaded();
+            reply->deleteLater();
+            return;
+        }
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
-        QString contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString();
-        bool isASX = reply->url().path().endsWith(".asx", Qt::CaseInsensitive);
-        bool isM3U = reply->url().path().endsWith(".m3u", Qt::CaseInsensitive);
-        bool isPLS = reply->url().path().endsWith(".pls", Qt::CaseInsensitive);
-        qDebug() << "Content-Type:" << contentType;
         if (isFormat(contentType, PlaylistReader::ASX) || isASX) {
             if (isASX) {
                 QStringList streams = parseASX(reply);

@@ -18,7 +18,7 @@
 
 #include <QtGui/QApplication>
 #include <QtDeclarative>
-#ifdef __arm__
+#ifdef HARMATTAN_BOOSTER
 #include <applauncherd/MDeclarativeCache>
 #endif
 
@@ -28,7 +28,7 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-#ifdef __arm__
+#ifdef HARMATTAN_BOOSTER
     QApplication *app = MDeclarativeCache::qApplication(argc, argv);
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
 #else
@@ -46,8 +46,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     view->show();
 #endif
+
+#ifdef HARMATTAN_BOOSTER
+    //see http://harmattan-dev.nokia.com/docs/library/html/guide/html/limitations.html?tab=3&q=booster&sp=all
+    //also no need to call 'delete', since we didn't call 'new' in case of using booster.
+    _exit(app->exec());
+#else
     int result = app->exec();
     delete view;
     delete app;
     return result;
+#endif
 }

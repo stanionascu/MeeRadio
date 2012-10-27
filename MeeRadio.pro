@@ -19,7 +19,6 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
 CONFIG += mobility
-CONFIG += qdeclarative-boostable
 MOBILITY += multimedia
 TEMPLATE = app
 TARGET = meeradio
@@ -37,8 +36,11 @@ qtcAddDeployment()
 
 # enable booster
 CONFIG += qdeclarative-boostable
-QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
-QMAKE_LFLAGS += -pie -rdynamic
+
+contains(CONFIG,qdeclarative-boostable):contains(MEEGO_EDITION,harmattan) {
+        DEFINES += HARMATTAN_BOOSTER
+}
+
 
 OTHER_FILES += \
     qtc_packaging/debian_harmattan/rules \

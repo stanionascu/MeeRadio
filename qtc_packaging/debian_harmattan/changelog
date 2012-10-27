@@ -1,3 +1,10 @@
+meeradio (0.8.1) unstable; urgency=low
+
+  * Added support for listening rdirect remote streaming (not using playlist)
+  * Improved QML booster usage
+
+ -- Dmitry Rozenshteyn <dbrozen@gmail.com>  Sat, 27 Oct 2012 15:01:31 +0300
+
 meeradio (0.8.0) unstable; urgency=low
 
   * Completly revamped UI.
